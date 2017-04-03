@@ -3,7 +3,7 @@
 //<!-this file is called by the AJAX script in register.html page. 
 //It reads the database to see if the requested username already exists->
 
-//define database parameters
+//get database access parameters
 $servername = "localhost";
 $dbusername = "root";
 $dbpassword = "steveyoung";
