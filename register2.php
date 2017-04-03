@@ -43,6 +43,7 @@
 			session_start();
 			if(isset($_SESSION['message'])){
 				echo "<p>".$_SESSION['message']."</p>";
+				unset($_SESSION['message']);
 			}
 			?>
 			<div class="form-group">
@@ -76,6 +77,13 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<div class="checkbox">
+						<label><input type="checkbox" name="staySignedIn"> Keep me signed in</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">  
 					<button type="submit" class="btn btn-default">Submit</button>
 				</div>
@@ -86,6 +94,7 @@
 		<div class="col-sm-offset-2 col-sm-10">  
 			<p id="warningUsername"/p>
 			<p id="warningPassword"/p>
+			
 			<a href="">Forgot your password?</a>
 			<div id="forgottenPassword"</div>
 		</div>

@@ -7,16 +7,15 @@
 $username = $_REQUEST["username"];
 $email = $_REQUEST["email"];
 $password = $_REQUEST["password1"];
+$passwordhash = password_hash($password, PASSWORD_DEFAULT);
 $phone = $_REQUEST["phone"];
-$username = $_REQUEST["username"];
 
-$servername = "localhost";
-$dbusername = "root";
-$dbpassword = "steveyoung";
-$dbname = "jobapptracker";
+//bring in the config file to get the database access credentials
+require 'config.php';
 
 // Create connection
 $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+
 
 echo "connection status is " .$conn->connect_errno;
 
@@ -26,19 +25,26 @@ if ($conn->connect_error) {
 } 
 
 $sql = "INSERT INTO users (username, password, email, phone) VALUES 
-('$username', '$password', '$email', '$phone')";
+('$username', '$passwordhash', '$email', '$phone')";
 
 if ($conn->query($sql) === TRUE) {
 	//the user was created successfully
+	//add the user details to the session
 	session_start();
-	$_SESSION['username']= $username;
+	$_SESSION['username']= $username;	
 	$_SESSION['email'] = $email;
+	//create a cookie if the user elected to "stay signed in"
+	if (isset($_REQUEST["staySignedIn"]))
+	{
+		setcookie('username', $username);
+	}
+	//direct the user to their Calendar
 	header("Location: userCalendar.php");
 } else {
 	//the registration failed
 	session_start();
 	$_SESSION['message'] = "whoops, something went wrong, please try to register again";
-	header("Location: register.php");
+	header("Location: register2.php");
 }
 
 $conn->close();
