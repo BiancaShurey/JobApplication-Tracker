@@ -20,6 +20,8 @@
 
 </head>
 <body>
+	 
+
 <div class="cover-bg">
   <div class="row">
     <div class="col-sm-12 center-block text-center">
@@ -31,37 +33,37 @@
   <div class="row">
     <div class="container">
 
-    <form class="form-horizontal" role="form" name="registration" method="post">
+    <form class="form-horizontal" role="form" name="registration" method="post" action="database.php">
         <!-- Organisation Name-->
         <div class="form-group">
-            <label for="uqID" class=" col-sm-4   control-label">Organisation</label>
+            <label for="organisation" class=" col-sm-4   control-label">Organisation</label>
             <div class="col-xs-8 col-md-5  ">
-                <input type="number" id="uqID" name="id" placeholder="Company Name" class="form-control" required="Required">
+                <input type="text" id="uqID" name="organisation" placeholder="Company Name" class="form-control" required="Required">
             </div>
         </div>
 
         <!-- Type-->
         <div class="form-group">
-            <label for="fullName" class=" col-xs-4 control-label">Type</label>
+            <label for="type" class=" col-xs-4 control-label">Type</label>
             <div class="col-xs-8 col-md-5">
-                <input type="text" name="name" id="fullName" placeholder="Tech" class="form-control" required="Required">
+                <input type="text" name="type" id="fullName" placeholder="Tech" class="form-control" required="Required">
             </div>
         </div>
 
         <!-- Industry -->
         <div class="form-group">
-            <label for="major" class=" col-xs-4 control-label">Industry</label>
+            <label for="industry" class=" col-xs-4 control-label">Industry</label>
             <div class="col-xs-8 col-md-5">
-                <input type="text" name="major" id="major" placeholder="Real Estate" class="form-control" required="Required">
+                <input type="text" name="industry" id="major" placeholder="Real Estate" class="form-control" required="Required">
             </div>
         </div>
 
 
         <!-- Location -->
         <div class="form-group">
-            <label for="email" class=" col-xs-4 control-label">Location</label>
+            <label for="location" class=" col-xs-4 control-label">Location</label>
             <div class="col-xs-8 col-md-5">
-                <input type="email" name="email" id="email" placeholder="Search" class="form-control" required="Required">
+                <input type="text" name="location" id="email" placeholder="Search" class="form-control" required="Required">
             </div>
         </div>
 
