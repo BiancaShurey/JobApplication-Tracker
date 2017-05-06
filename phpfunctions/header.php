@@ -23,7 +23,7 @@ $current = new currentUser();
       echo"<link href='css/fullcalendar.min.css' rel='stylesheet' />
       <link href='css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
       <script src='js/moment.min.js'></script>
-      <script src='js/fullcalendar.min.js'></script>"
+      <script src='js/fullcalendar.min.js'></script>";
     }
     ?>
     <link href="css/stylesheet.css" rel="stylesheet">
@@ -65,8 +65,8 @@ $current = new currentUser();
               '<li><a href="#">Features</a></li>
               <li><a href="contactUs.php">Contact Us</a></li>
               <li><a href="FAQ.php">FAQ</a></li>
-            	<li><a href=\"register2.php\">Sign up</a></li>
-            	<li><a href=\"login.php\">Sign in</a></li>';
+            	<li><a href="register2.php">Sign up</a></li>
+            	<li><a href="login.php">Sign in</a></li>';
             }
             ?>
           </ul>
@@ -96,7 +96,7 @@ $current = new currentUser();
           </ul>
         </div>
       </div>
-    </nav>"'}
+    </nav>"';}
     ?>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

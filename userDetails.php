@@ -2,7 +2,7 @@
 <?php
 
 require_once 'phpfunctions\classes.php';
-require_once 'phpfunctionsheader.php';
+require_once 'phpfunctions\header.php';
 $current = new currentUser();	//the user that is currently logged in (if any)
 if (!$current->username())
 {
