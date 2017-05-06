@@ -1,8 +1,8 @@
 
 <?php
 
-require_once 'classes.php';
-require_once 'header.php';
+require_once 'phpfunctions\classes.php';
+require_once 'phpfunctionsheader.php';
 $current = new currentUser();	//the user that is currently logged in (if any)
 if (!$current->username())
 {
@@ -32,7 +32,7 @@ if (!$current->username())
           <h1>My Details</h1>
           <h2>Review or edit your details:</h2>
         </div>
-		<?php 
+		<?php
 		if(isset($_SESSION['message'])){
 			echo "<p>".$_SESSION['message']."</p>";
 			unset($_SESSION['message']);
@@ -44,69 +44,69 @@ if (!$current->username())
 				<label class="col-sm-2"><?php echo $current->username();?></label>
 				<span class="col-sm-8"><button class="toggle">edit</button></span>
 			</div>
-			
+
 			<div class="editfield">
 				<form class="form-horizontal" method="POST" action="changeDetails.php">
 				<div class="form-group" id="editusername">
-					<label class="control-label col-sm-2" for="newusername">New username:</label> 
-					<div class="col-sm-2">  
+					<label class="control-label col-sm-2" for="newusername">New username:</label>
+					<div class="col-sm-2">
 						<input type="text" id="newusername" name="newusername" class="content" onblur="checkUsername(this.value)"/><br>
 					</div>
-					<span class="col-sm-8"><button>sumbit change</button></span>
+					<span class="col-sm-8"><button>submit change</button></span>
 				</div>
 				</form>
 			</div>
-			
+
 			<div class="form-group">
 				<label class="col-sm-2">Password:</label>
 				<label class="col-sm-2">hidden</label>
 				<span class="col-sm-8"><button class="toggle">edit</button></span>
 			</div>
-			
+
 			<div class="editfield">
 				<form class="form-horizontal" method="POST" action="changeDetails.php">
 				<div class="form-group" id="editpassword">
-					<label class="control-label col-sm-2" for="newpassword">New password:</label> 
-					<div class="col-sm-2">  
+					<label class="control-label col-sm-2" for="newpassword">New password:</label>
+					<div class="col-sm-2">
 						<input type="password" id="newpassword" name="newpassword" class="content" onblur="checkUsername(this.value)"/><br>
 					</div>
-					<span class="col-sm-8"><button>sumbit change</button></span>
+					<span class="col-sm-8"><button>submit change</button></span>
 				</div>
 				</form>
 			</div>
-			
+
 			<div class="form-group">
 				<label class="col-sm-2">Email:</label>
 				<label class="col-sm-2"><?php echo $current->email();?></label>
 				<span class="col-sm-8"><button class="toggle">edit</button></span>
 			</div>
-			
+
 			<div class="editfield">
 				<form class="form-horizontal" method="POST" action="changeDetails.php">
 				<div class="form-group" id="editemail">
-					<label class="control-label col-sm-2" for="newemail">New email:</label> 
-					<div class="col-sm-2">  
+					<label class="control-label col-sm-2" for="newemail">New email:</label>
+					<div class="col-sm-2">
 						<input type="text" id="newemail" name="newemail" class="content" onblur="checkUsername(this.value)"/><br>
 					</div>
-					<span class="col-sm-8"><button>sumbit change</button></span>
+					<span class="col-sm-8"><button>submit change</button></span>
 				</div>
 				</form>
 			</div>
-			
+
 			<div class="form-group">
 				<label class="col-sm-2">Phone:</label>
 				<label class="col-sm-2"><?php echo $current->phone();?></label>
 				<span class="col-sm-8"><button class="toggle">edit</button></span>
 			</div>
-			
+
 			<div class="editfield">
-				<form class="form-horizontal" method="POST" action="changeDetails.php">
+				<form class="form-horizontal" method="POST" action="phpfunctions\changeDetails.php">
 				<div class="form-group" id="editphone">
-					<label class="control-label col-sm-2" for="newphone">New phone:</label> 
-					<div class="col-sm-2">  
+					<label class="control-label col-sm-2" for="newphone">New phone:</label>
+					<div class="col-sm-2">
 						<input type="text" id="newphone" name="newphone" class="content" onblur="checkUsername(this.value)"/><br>
 					</div>
-					<span class="col-sm-8"><button>sumbit change</button></span>
+					<span class="col-sm-8"><button>submit change</button></span>
 				</div>
 				</form>
 			</div>
@@ -119,7 +119,7 @@ if (!$current->username())
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    
+
     <script>
     //This method sets the "editfield" elements to hidden upon page load.
     //It binds the "edit" buttons so that when one is clicked it slides the corresponding

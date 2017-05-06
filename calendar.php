@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset='utf-8' />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Job Application Tracker</title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href='css/fullcalendar.min.css' rel='stylesheet' />
-<link href='css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-<link href="css/stylesheet.css" rel="stylesheet">
-<script src='js/moment.min.js'></script>
-<script src='js/jquery.min.js'></script>
-<script src='js/fullcalendar.min.js'></script>
+<?php require 'phpfunctions\header.php';?>
 <script>
 	$(document).ready(function() {
                 console.log("test")
@@ -31,11 +18,10 @@
 
 	#calendar {
 		max-width: 900px;
-		margin: 0 auto;
+		margin: 50px ;
 	}
 
 </style>
-</head>
 <body>
 
 	    <nav class="navbar navbar-default navbar-fixed-top">

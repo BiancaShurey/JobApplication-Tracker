@@ -1,4 +1,4 @@
-<?php include 'phpfunctions\header-standard.php';?>
+<?php require 'phpfunctions\header.php';?>
     <div class="main">
       <div class="container">
         <div class="Jumbotron">

@@ -1,24 +1,5 @@
-<!DOCTYPE html>
+<?php require 'phpfunctions\header.php';?>
 
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-   
-
-    <title>About</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <style>
-    body {
-        padding-top: 20px;
-        font-size: 12pt;
-    }
-    </style>
-
-
-</head>
 <body>
 <div class="cover-bg">
   <div class="row">
@@ -72,7 +53,7 @@
                 <input type="email" name="size" id="email" placeholder="Size" class="form-control" required="Required">
             </div>
         </div>
-		
+
 		<!-- Location -->
         <div class="form-group">
             <label for="email" class=" col-xs-4 control-label">Growth</label>
@@ -80,7 +61,7 @@
                 <input type="email" name="growth" id="email" placeholder="Growth" class="form-control" required="Required">
             </div>
         </div>
-		
+
 		<!-- Location -->
         <div class="form-group">
             <label for="email" class=" col-xs-4 control-label">Website</label>

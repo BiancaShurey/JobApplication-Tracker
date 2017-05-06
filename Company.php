@@ -1,26 +1,7 @@
-<!DOCTYPE html>
+<?php require 'phpfunctions\header.php';?>
 
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-   
-
-    <title>Company Registration</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <style>
-    body {
-        padding-top: 20px;
-        font-size: 12pt;
-    }
-    </style>
-
-
-</head>
 <body>
-	 
+
 
 <div class="cover-bg">
   <div class="row">
