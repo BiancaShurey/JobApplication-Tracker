@@ -64,7 +64,7 @@ $current = new currentUser();
             	echo
               '<li><a href="#">Features</a></li>
               <li><a href="contactUs.php">Contact Us</a></li>
-              <li><a href="FAQ.html">FAQ</a></li>
+              <li><a href="FAQ.php">FAQ</a></li>
             	<li><a href=\"register2.php\">Sign up</a></li>
             	<li><a href=\"login.php\">Sign in</a></li>';
             }

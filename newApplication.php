@@ -27,7 +27,7 @@ else {
 		<p>phone: <?php echo $_SESSION['phone']?></p>
 		<p>password: <?php echo $_SESSION['password']?></p>
 
-		<form class="form-horizontal" method="POST" action="createApplication.php">
+		<form class="form-horizontal" method="POST" action="phpfunctions\createApplication.php">
 			<?php
 			if(isset($_SESSION['message'])){
 				echo "<p>".$_SESSION['message']."</p>";
