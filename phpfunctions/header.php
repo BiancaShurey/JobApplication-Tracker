@@ -1,3 +1,4 @@
+<!--not used in calender as otherwise calendar breaks-->
 
 <?php
 //check if a user is already signed in (the header is presented
@@ -18,15 +19,17 @@ $current = new currentUser();
     <script src='js/jquery.min.js'></script>
 
     <?php
-    if ($current->username())
-    {
-      echo"<link href='css/fullcalendar.min.css' rel='stylesheet' />
-      <link href='css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-      <script src='js/moment.min.js'></script>
-      <script src='js/fullcalendar.min.js'></script>";
-    }
-    ?>
-    <link href="css/stylesheet.css" rel="stylesheet">
+   if ($current->username())
+   {
+     echo"<link href='css/fullcalendar.min.css' rel='stylesheet' />
+     <link href='css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+     <script src='js/moment.min.js'></script>
+     <script src='js/fullcalendar.min.js'></script>
+     <link href='css/stylesheet.css' rel='stylesheet'>";
+   } else {
+     echo"<link href='css/stylesheet.css' rel='stylesheet'>";
+   }
+   ?>
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -37,7 +40,7 @@ $current = new currentUser();
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html">Job Application Tracker</a>
+          <a class="navbar-brand" href="index.php">Job Application Tracker</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right">
@@ -48,7 +51,7 @@ $current = new currentUser();
             	//the user is signed in so display the following nav bar
             	echo
             	"<li><a>Hey, ".$current->username()."</a></li>
-            	<li><a href=\"userCalendar2.php\">Calendar</a></li>
+            	<li><a href=\"calendar.php\">Calendar</a></li>
 				<li><a href=\"userCompanies.php\">Companies</a></li>
 				<li><a href=\"userContacts.php\">Contacts</a></li>
 				<li class=\"dropdown\">
@@ -86,7 +89,7 @@ $current = new currentUser();
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html">Job Application Tracker</a>
+          <a class="navbar-brand" href="index.php">Job Application Tracker</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right">
@@ -98,11 +101,6 @@ $current = new currentUser();
       </div>
     </nav>"';}
     ?>
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
 
 </body>
 </html>

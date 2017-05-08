@@ -20,7 +20,7 @@ $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 if ($conn->connect_error) {
 	//die("Connection failed: " . $conn->connect_error);
 	$_SESSION['message'] = "Whoops, looks like something went wrong with the database, please try again";
-	header("Location: login.php");
+	header("Location: ../login.php");
 }
 
 //query the database
@@ -57,13 +57,13 @@ if ($result->num_rows > 0)
 		} else {
 			//then the user credentials were incorrect
 			$_SESSION['message'] = "Whoops, username/password was incorrect, have another go...";
-			header("Location: login.php");
+			header("Location: ../login.php");
 			exit;
 		}
 	}
 } else {
 	$_SESSION['message'] = "Seems that username/password was incorrect, have another go...";
-	header("Location: login.php");
+	header("Location: ../login.php");
 }
 
 ?>

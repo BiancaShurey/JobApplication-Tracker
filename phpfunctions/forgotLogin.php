@@ -2,7 +2,7 @@
 
 //<!-this file is called by the login.php page after the user submits
 //the form for forgotten login details. If the user provides the correct email
-//and phone in the form, then this script sends them an email with their 
+//and phone in the form, then this script sends them an email with their
 //username and new password->
 
 session_start();
@@ -18,10 +18,10 @@ $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 // Check connection
 if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
-} 
+}
 
 //query the database
-$sql = "SELECT * FROM users WHERE email = '$email' AND phone = '$phone'"; 
+$sql = "SELECT * FROM users WHERE email = '$email' AND phone = '$phone'";
 $result = $conn->query($sql);
 
 //parse the query results
@@ -34,7 +34,7 @@ if ($result->num_rows > 0)
 } else {
 	//the supplied credentials aren't found
 	$_SESSION['message'] = "Seems that email/phone are incorrect, have another go...";
-	header("Location: login.php");
+	header("Location: ../login.php");
 	exit;
 }
 
@@ -62,7 +62,7 @@ $mailStatus = mail($email, $subject, $emailMessage, $headers);
 
 //send the user back to the login page
 $_SESSION['message'] = "We've sent you an email with your login credentials";
-header("Location: login.php");
+header("Location: ../login.php");
 
 ?>
 /*
