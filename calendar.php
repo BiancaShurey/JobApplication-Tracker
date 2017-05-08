@@ -1,4 +1,5 @@
 <!--Breaks if header.php is used-->
+<!-- refer to https://fullcalendar.io/docs/mouse/eventClick/ and dynamic page generation for getting to application pages-->
 <?php
 //check if a user is already signed in (the header is presented
 //differently if a user is already signed in).
@@ -21,9 +22,25 @@ $current = new currentUser();
 		 <script>
 			$(document).ready(function() {
 		                $('#calendar').fullCalendar({
-		                  events: 'phpfunctions/getdates.php'
+		                  events: 'phpfunctions/getdates.php',
+											height: 650,
 		              });
-		            });
+									$('#list').fullCalendar({
+										header: {
+													left: 'prev,next today',
+													center: 'title',
+													right: 'listDay,listWeek'
+												},
+												// customize the button names,
+												// otherwise they'd all just say "list"
+												views: {
+													listDay: { buttonText: 'list day' },
+													listWeek: { buttonText: 'list week' }
+												},
+										defaultView: 'listWeek',
+										events: 'phpfunctions/getdates.php',
+										height: 650,  });
+							});
 		</script>
 <style>
 
@@ -35,8 +52,22 @@ $current = new currentUser();
 	}
 
 	#calendar {
-		max-width: 900px;
-		margin: 50px ;
+		max-width: 69%;
+		margin: 25px 0px;
+		height: 90%;
+		float:left;
+	}
+
+	#list{
+		max-width: 29%;
+		margin: 25px 0px;
+		height: 90%;
+		border-style: solid;
+		border-left: thick #000000;
+		border-top: none;
+		border-bottom: none;
+		border-right: none;
+		float:right;
 	}
 
 </style>
@@ -75,6 +106,7 @@ $current = new currentUser();
 		</div>
 	</nav>
 	<div id='calendar'></div>
+	<div id='list'></div>
 	<nav class="navbar navbar-default navbar-fixed-bottom">
 	<div class="container">
 		<div class="navbar-header">
