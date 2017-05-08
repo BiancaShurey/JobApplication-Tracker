@@ -18,7 +18,12 @@ body {
   font-size: 14px;
 }
 
-/*div #calendar {
-  max-width: 900px;
-  margin-top: 100px;
-}*/
+.navbar-fixed-bottom {
+  font-size: 0.9em;
+  background-color: #00001E;
+}
+
+.navbar-fixed-bottom .navbar-brand{
+  font-size: 0.95em;
+  padding:5px;
+}
