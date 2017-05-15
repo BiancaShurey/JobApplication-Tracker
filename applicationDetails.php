@@ -1,9 +1,9 @@
 
 <?php
 
-require_once 'classes.php';
-require_once 'header.php';
-require_once 'config.php';
+require_once 'phpfunctions/classes.php';
+require_once 'phpfunctions/header.php';
+require_once 'phpfunctions/config.php';
 $current = new currentUser();	//the user that is currently logged in (if any)
 if (!$current->username())
 {
@@ -19,7 +19,7 @@ $company = 'AusPost';
 $title = 'posty';
 $username = $current->username();
 
-//Get details of this application from database		
+//Get details of this application from database
 // Create database connection
 $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 
@@ -27,19 +27,20 @@ $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 if ($conn->connect_error) {
 	$_SESSION['message'] = "Couldn't access database.";
 	$conn->close();
-	header("Location: userCalendar.php");
+	header("Location: Calendar.php");
 	exit;
 }
 
 //create SQL query for application
-$sql = "SELECT * FROM applications WHERE username = '$username' AND Company = '$company' AND Title = '$title'";
+$id=$_GET['id'];
+$sql = "SELECT $id FROM applications";
 $result = $conn->query($sql);
 
 //check if database queries were successful
 if (!$result) {
 	$_SESSION['message'] = "Couldn't find the application.";
 	$conn->close();
-	header("Location: userCalendar.php");
+	header("Location: Calendar.php");
 	exit;
 }
 
@@ -71,86 +72,86 @@ $conn->close();
           <h1><?php echo $company.", ".$title; ?></h1>
           <h2>Review/edit details for this application:</h2>
         </div>
-		
+
 		<form class="form-horizontal" method="POST" action="updateApplication.php">
-			<?php 
+			<?php
 			if(isset($_SESSION['message'])){
 				echo "<p>".$_SESSION['message']."</p>";
 				unset($_SESSION['message']);
 			}
 			?>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="company">company:</label> 
-				<div class="col-sm-10">  
+				<label class="control-label col-sm-2" for="company">company:</label>
+				<div class="col-sm-10">
 					<input value="<?php echo $event->company();?>" type="text" id="company" name="company" class="content" onkeyup="searchCompanies(this.value)" onblur="closeSuggestions()"/><br>
 				</div>
 				<p id="livesearch"></p>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="title">title:</label>
-				<div class="col-sm-10">  
+				<div class="col-sm-10">
 					<input value="<?php echo $event->title();?>" type="text" id="title" name="title" class="content" /><br>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="type">type:</label>
-				<div class="col-sm-10">  
+				<div class="col-sm-10">
 					<input value="<?php echo $event->type();?>" type="text" id="type" name="type" class="content"/><br>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="duration">duration:</label>
-				<div class="col-sm-10">  
+				<div class="col-sm-10">
 					<input value="<?php echo $event->duration();?>" type="text" name="duration" class="content" /><br>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="site">site:</label>
-				<div class="col-sm-10">  
+				<div class="col-sm-10">
 					<input value="<?php echo $event->site();?>" type="text" name="site" class="content" /><br>
 				</div>
 			</div>
-			
+
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="released">released:</label>
-				<div class="col-sm-10">  
+				<div class="col-sm-10">
 					<input value="<?php echo $event->released();?>" type="date" name="released" class="content" /><br>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="closes">closes:</label>
-				<div class="col-sm-10">  
+				<div class="col-sm-10">
 					<input value="<?php echo $event->closes();?>" type="date" name="closes" class="content" /><br>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="selection">selection:</label>
-				<div class="col-sm-10">  
+				<div class="col-sm-10">
 					<input value="<?php echo $event->selectionCriteria();?>" type="text" name="selection" class="content" /><br>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="hearfrom">hearfrom:</label>
-				<div class="col-sm-10">  
+				<div class="col-sm-10">
 					<input value="<?php echo $event->hearFrom();?>" type="date" name="hearfrom" class="content" /><br>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="location">location:</label>
-				<div class="col-sm-10">  
+				<div class="col-sm-10">
 					<input value="<?php echo $event->location();?>" type="text" name="location" class="content" /><br>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="commences">commences:</label>
-				<div class="col-sm-10">  
+				<div class="col-sm-10">
 					<input value="<?php echo $event->commences();?>" type="date" name="commences" class="content" /><br>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<div class="checkbox">
-						<?php 
+						<?php
 						if ($event->applied() == 'y') {
 							echo "<label><input checked=\"true\" type=\"checkbox\" name=\"applied\"> Applied already?</label>";
 						} else {
@@ -160,13 +161,13 @@ $conn->close();
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- Application details before changes -->
 			<input value="<?php echo $event->company();?>" type="text" id="companyInitial" name="companyInitial" class="content" /><br>
 			<input value="<?php echo $event->title();?>" type="text" id="titleInitial" name="titleInitial" class="content" /><br>
-			
+
 			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">  
+				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" class="btn btn-default">Submit changes</button>
 				</div>
 			</div>
