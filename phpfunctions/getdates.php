@@ -9,7 +9,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT title, start, `end` FROM applications";
+$sql = "SELECT id, title, start, `end` FROM applications";
 $result = $conn->query($sql);
 
 $emparray = array();

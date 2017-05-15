@@ -24,6 +24,12 @@ $current = new currentUser();
 		                $('#calendar').fullCalendar({
 		                  events: 'phpfunctions/getdates.php',
 											height: 650,
+                      navLinks: true, // can click day/week names to navigate views
+                			editable: true,
+                			eventLimit: true, // allow "more" link when too many events
+                      eventClick: function(event) {
+                            window.open('applicationDetails.php?id='+event.id);
+                            return false;}
 		              });
 									$('#list').fullCalendar({
 										header: {
@@ -37,9 +43,16 @@ $current = new currentUser();
 													listDay: { buttonText: 'list day' },
 													listWeek: { buttonText: 'list week' }
 												},
+                    navLinks: true, // can click day/week names to navigate views
+              			editable: true,
+              			eventLimit: true, // allow "more" link when too many events
 										defaultView: 'listWeek',
 										events: 'phpfunctions/getdates.php',
-										height: 650,  });
+										height: 650,
+                    eventClick: function(event) {
+                        window.open('applicationDetails.php?id='+event.id);
+                        return false;
+    }});
 							});
 		</script>
 <style>
