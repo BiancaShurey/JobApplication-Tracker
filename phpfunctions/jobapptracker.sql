@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.14
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2017 at 01:43 AM
--- Server version: 5.7.17-log
--- PHP Version: 5.6.12
+-- Generation Time: May 16, 2017 at 03:13 AM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,14 +26,15 @@ SET time_zone = "+00:00";
 -- Table structure for table `applications`
 --
 
-CREATE TABLE IF NOT EXISTS `applications` (
+CREATE TABLE `applications` (
+  `ID` int(11) NOT NULL,
   `Company` varchar(45) NOT NULL,
   `Title` varchar(45) NOT NULL,
   `type` text,
   `duration` int(11) DEFAULT NULL,
   `site` text,
-  `released` text,
-  `closes` text,
+  `start` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `end` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `applied` text,
   `selection criteria` text,
   `hear from` text,
@@ -46,21 +47,16 @@ CREATE TABLE IF NOT EXISTS `applications` (
 -- Dumping data for table `applications`
 --
 
-INSERT INTO `applications` (`Company`, `Title`, `type`, `duration`, `site`, `released`, `closes`, `applied`, `selection criteria`, `hear from`, `location`, `commences`, `username`) VALUES
-('AEMO', 'AEMO graduate development program', '', 36, 'https://gradaustralia.com.au/aemo-2018-graduate-development-program', '10/3/2017', '5/4/2017', '', 'IT degree', '7/3/2017', '', '12/30/2017', ''),
-('ANSTO', 'ANSTO Graduate program', '', 24, '', '', '', '', '', '', 'Sydney, Melbourne', '', ''),
-('ATO', 'IT', 'grad program', 12, 'https://au.gradconnection.com/dashboard/graduate/job-search/australian-taxation-office/jobs/australian-taxation-office-where-could-your-it-degree-take-you/', '', '12/4/2017', '', 'graduate last or this yr', '2/2/2018', 'National - Brisbane Melb', '', ''),
-('AusPost', 'AusPost Graduate Program', 'Digital and IT streams', 24, 'https://auspost.gradapp.com.au/', '', '12/4/2017', 'Y', 'Credit average', '', 'melbourne', '', ''),
-('BOM', 'Graduate Meterologist', '', 9, '', '10/3/2017', '', '', '', '', 'Melbourne', '', ''),
-('Ericsson', '2018 Ericsson Graduate Program', '', 18, 'https://jobs.ericsson.com/job/Docklands-2018-Ericsson-Graduate-Program-VIC/392403600/?feedId=47200&utm_source=Indeed&utm_campaign=Ericsson_Indeed&utm_medium=referral', '', '', '', '', '', '', '', ''),
-('IBM', 'Startwise Program - software engineer? ', 'grad program', 12, 'https://au.gradconnection.com/dashboard/graduate/job-search/ibm/jobs/ibm-graduate-program/', '', 'rolling basis', '', 'graduate ', '', 'Melbourne, Brisbane, other', '', ''),
-('Leidos', 'Graduate Software Engineer', 'grad program', 12, 'https://leidoscareers.nga.net.au/cp/index.cfm?event=jobs.checkJobDetailsNewApplication&returnToEvent=jobs.listJobs&jobid=14CB83BD-383A-57CD-43EA-9ACF86363366&CurATC=EXT&CurBID=96DD71C4-ABD6-3024-BE72-926F2E4112DA&JobListID=C56CD57B-5B6D-3E1A-8EAA-5BE0D284C364&jobsListKey=3e0007bd-6ba2-45e1-b668-e522cdbd2eef&persistVariables=CurATC,CurBID,JobListID,jobsListKey,JobID&lid=95084360188', '', '2/4/2017', '', '', '', 'Melbourne, Canberra', '6/28/1900', ''),
-('Microsoft', 'Customer Facing Technology', '', 24, 'https://www.mscareers-ice.com/job-listings?ddl=Graduate', '10/3/2017', '', '', '', '', 'Canberra', '', ''),
-('NAB ', 'Tech Graduate Program streams', 'grad program', 15, 'https://www.nab.com.au/about-us/careers/graduate-careers/program-streams/technology-graduate-stream-with-nab', '', '2/4/2017', '', 'Major in technology', '4/5/2017', 'melbourne', '10/2/2017', ''),
-('Optus', 'Optus Graduate Development Program', '', 24, 'https://www.optus.com.au/about/careers/working-at-optus/learning-development', '', '', '', '', '', '', '', ''),
-('Quantium', 'Analytics/Software engineer', 'grad program', 18, 'https://au.gradconnection.com/employers/quantium/#graduate-jobs_engineering', '10/3/2017', '2/4/2017', '', '', '4/5/2017', '', '', ''),
-('rea group', 'IT graduate program', 'grad program', 18, 'http://careers.realestate.com.au/graduate-programme/', '10/3/2017', '2/4/2017', 'Y', '', '4/5/2017', 'melbourne', '10/2/2017', ''),
-('Suncorp', 'Suncorp Graduate Program', 'grad program', 24, 'http://www.suncorpgroupgraduates.com.au/apply', '8/3/2017', '2/4/2017', '', 'pass', '4/5/2017', 'Brisbane, Sydney and Melb', '', '');
+INSERT INTO `applications` (`ID`, `Company`, `Title`, `type`, `duration`, `site`, `start`, `end`, `applied`, `selection criteria`, `hear from`, `location`, `commences`, `username`) VALUES
+(0, 'AEMO', 'AEMO graduate development program', '', 36, 'https://gradaustralia.com.au/aemo-2018-graduate-development-program', '2017-03-07 00:00:00', '2017-05-09 21:00:00', '', 'IT degree', '7/3/2017', '', '12/30/2017', ''),
+(1, 'ANSTO', 'ANSTO Graduate program', '', 24, '', '2017-04-10 00:00:00', '2017-05-15 10:53:32', '', '', '', 'Sydney, Melbourne', '', ''),
+(2, 'ATO', 'IT', 'grad program', 12, 'https://au.gradconnection.com/dashboard/graduate/job-search/australian-taxation-office/jobs/australian-taxation-office-where-could-your-it-degree-take-you/', '2017-05-04 00:00:00', '2017-05-15 10:53:41', '', 'graduate last or this yr', '2/2/2018', 'National - Brisbane Melb', '', ''),
+(3, 'AusPost', 'AusPost Graduate Program', 'Digital and IT streams', 24, 'https://auspost.gradapp.com.au/', '2017-05-08 00:00:00', '2017-05-15 10:53:55', 'Y', 'Credit average', '', 'melbourne', '', ''),
+(4, 'BOM', 'Graduate Meterologist', '', 9, '', '2017-05-11 00:00:00', '2017-05-15 10:54:04', '', '', '', 'Melbourne', '', ''),
+(5, 'Ericsson', '2018 Ericsson Graduate Program', '', 18, 'https://jobs.ericsson.com/job/Docklands-2018-Ericsson-Graduate-Program-VIC/392403600/?feedId=47200&utm_source=Indeed&utm_campaign=Ericsson_Indeed&utm_medium=referral', '2017-05-08 00:00:00', '2017-05-15 10:54:13', '', '', '', '', '', ''),
+(6, 'IBM', 'Startwise Program - software engineer? ', 'grad program', 12, 'https://au.gradconnection.com/dashboard/graduate/job-search/ibm/jobs/ibm-graduate-program/', '2017-05-16 00:00:00', '2017-05-15 10:54:20', '', 'graduate ', '', 'Melbourne, Brisbane, other', '', ''),
+(7, 'Leidos', 'Graduate Software Engineer', 'grad program', 12, 'https://leidoscareers.nga.net.au/cp/index.cfm?event=jobs.checkJobDetailsNewApplication&returnToEvent=jobs.listJobs&jobid=14CB83BD-383A-57CD-43EA-9ACF86363366&CurATC=EXT&CurBID=96DD71C4-ABD6-3024-BE72-926F2E4112DA&JobListID=C56CD57B-5B6D-3E1A-8EAA-5BE0D284C364&jobsListKey=3e0007bd-6ba2-45e1-b668-e522cdbd2eef&persistVariables=CurATC,CurBID,JobListID,jobsListKey,JobID&lid=95084360188', '2017-05-03 00:00:00', '2017-05-15 10:54:28', '', '', '', 'Melbourne, Canberra', '6/28/1900', ''),
+(8, 'rea group', 'IT graduate program', 'grad program', 18, 'http://careers.realestate.com.au/graduate-programme/', '2017-05-08 00:00:00', '2017-05-15 10:54:36', 'Y', '', '4/5/2017', 'melbourne', '10/2/2017', '');
 
 -- --------------------------------------------------------
 
@@ -68,7 +64,7 @@ INSERT INTO `applications` (`Company`, `Title`, `type`, `duration`, `site`, `rel
 -- Table structure for table `companies`
 --
 
-CREATE TABLE IF NOT EXISTS `companies` (
+CREATE TABLE `companies` (
   `Company` varchar(45) NOT NULL,
   `Type` text,
   `Industry` varchar(45) DEFAULT NULL,
@@ -108,7 +104,7 @@ INSERT INTO `companies` (`Company`, `Type`, `Industry`, `Values`, `Diversity`, `
 -- Table structure for table `contacts`
 --
 
-CREATE TABLE IF NOT EXISTS `contacts` (
+CREATE TABLE `contacts` (
   `name` varchar(30) NOT NULL,
   `company` varchar(30) NOT NULL,
   `type` varchar(45) DEFAULT NULL,
@@ -131,7 +127,7 @@ INSERT INTO `contacts` (`name`, `company`, `type`, `phone`, `email`, `location`,
 -- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
   `username` varchar(45) NOT NULL,
   `password` varchar(45) DEFAULT NULL,
   `email` varchar(90) DEFAULT NULL,
@@ -146,6 +142,8 @@ INSERT INTO `users` (`username`, `password`, `email`, `phone`) VALUES
 ('', '', '', ''),
 ('beau', 'beau', 'byarranton@hotmail.com', '0432723111'),
 ('beaux', 'ste', 'baoo@hg', '45666'),
+('bijelo9', '$2y$10$PmPJmQ0ufXHiKfV0zPdz9umtlHGrvKuAJSHquG', '', ''),
+('bshure', '$2y$10$p.rGUWNqAX0tdWlyCWsOGeqEf5yW0E/uabYiKo', 'bijelo9@gmail.com', '0468547137'),
 ('jamebond', 'what', 'jaws@moon.com', '00789'),
 ('JohnDoe', 'johnspword', 'john@example.com', '043354'),
 ('Naffy', 'whats', 'baoo@hg', '2341234'),
@@ -160,7 +158,9 @@ INSERT INTO `users` (`username`, `password`, `email`, `phone`) VALUES
 --
 ALTER TABLE `applications`
   ADD PRIMARY KEY (`Company`,`Title`,`username`),
-  ADD KEY `username` (`username`);
+  ADD UNIQUE KEY `ID_2` (`ID`),
+  ADD KEY `username` (`username`),
+  ADD KEY `ID` (`ID`);
 
 --
 -- Indexes for table `companies`

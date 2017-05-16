@@ -1,6 +1,6 @@
 
-<?php 
-//this section defines the currentUser class 
+<?php
+//this section defines the currentUser class
 //the class provides a means of accessing any set cookies or session variables
 class currentUser
 {
@@ -16,35 +16,35 @@ class currentUser
 			session_start();
 		}
 	}
-	
+
 	function setUsername($username)
 	{
 		//set the $username
 		$_SESSION['username'] = $username;
 		$this->username = $username;
 	}
-	
+
 	function setPassword($password)
 	{
 		//set the $password
 		$_SESSION['password'] = $password;
 		$this->password = $password;
 	}
-	
+
 	function setEmail($email)
 	{
 		//set the $email
 		$_SESSION['email'] = $email;
 		$this->email = $email;
 	}
-	
+
 	function setPhone($phone)
 	{
 		//set the $phone
 		$_SESSION['phone'] = $phone;
 		$this->phone = $phone;
 	}
-	
+
 	function setAll($username, $password, $email, $phone, $staySignedIn = 0)
 	{
 		//set the $username
@@ -90,14 +90,14 @@ class currentUser
 			}
 		}
 	}
-	
-	function username()	{ 
-		if(isset($_SESSION['username'])) { 
+
+	function username()	{
+		if(isset($_SESSION['username'])) {
 			return $_SESSION['username'];
-		} elseif (isset($_COOKIE['username'])) { 
+		} elseif (isset($_COOKIE['username'])) {
 			return $_COOKIE['username'];
-		} else { 
-			return null; 
+		} else {
+			return null;
 		}
 	}
 	function password()	{
@@ -130,7 +130,7 @@ class currentUser
 }
 ?>
 
-<?php 
+<?php
 class Application
 {
 	//this class represents a row from the Applications database table
@@ -147,7 +147,7 @@ class Application
 	private $location;
 	private $commences;
 	private $username;
-	
+
 	/*
 	 * constructor method.
 	 * Accepts a row from the result of an SQL query
@@ -162,18 +162,18 @@ class Application
 		$this->released = $row['released'];
 		$this->closes = $row['closes'];
 		$this->applied = $row['applied'];
-		$this->selectionCriteria = $row['selectionCriteria'];
-		$this->hearFrom = $row['hearFrom'];
+		$this->selectionCriteria = $row['selection criteria'];
+		$this->hearFrom = $row['hear fom'];
 		$this->location = $row['location'];
 		$this->commences = $row['commences'];
 		$this->username = $row['username'];
 	}
-	
+
 	/*
 	 * method for getting company
 	 */
 	function company()	{ return $this->company; }
-	
+
 	/*
 	 * method for getting title
 	 */
@@ -181,13 +181,13 @@ class Application
 }
 ?>
 
-<?php 
+<?php
 class Event
 {
 	/*
 	 * this class represents an event in the userCalendar
 	 */
-	
+
 	//the fields that represent the attributes in the Applications table
 	//of the database
 	private $company;
@@ -203,11 +203,11 @@ class Event
 	private $location;
 	private $commences;
 	private $username;
-	
+
 	//the fields that represent the other details about the Event
 	private $classy;	//the category of the event ('released', 'closes', 'hearfrom')
 	private $date;	//the date of the event
-	
+
 	/*
 	 * constructor method.
 	 * Row is a row from the result of an SQL query on the Applications table
@@ -221,20 +221,20 @@ class Event
 		$this->type = $row['type'];
 		$this->duration = $row['duration'];
 		$this->site = $row['site'];
-		$this->released = $row['released'];
-		$this->closes = $row['closes'];
+		$this->released = $row['start'];
+		$this->closes = $row['end'];
 		$this->applied = $row['applied'];
-		$this->selectionCriteria = $row['selectionCriteria'];
-		$this->hearFrom = $row['hearFrom'];
+		$this->selectionCriteria = $row['selection criteria'];
+		$this->hearFrom = $row['hear from'];
 		$this->location = $row['location'];
 		$this->commences = $row['commences'];
 		$this->username = $row['username'];
-		
+
 		//set the class and date of the event
 		$this->classy = $classy;
 		$this->date = $row[$classy];
 	}
-	
+
 	/*
 	 * provide a JSON object instance of the class
 	 */
@@ -255,11 +255,11 @@ class Event
 				'commences' => $this->commences,
 				'username' => $this->username,
 				'classy' => $this->classy,
-				'date' => $this->date,	
+				'date' => $this->date,
 		);
 		return json_encode($json);
 	}
-	
+
 	//getter functions
 	function company() { return $this->company; }
 	function title() { return $this->title; }
@@ -275,24 +275,24 @@ class Event
 	function commences() { return $this->commences; }
 	function username() { return $this->username; }
 	function classy() { return $this->classy; }
-	function date() { return $this->date; }	
+	function date() { return $this->date; }
 }
 ?>
 
-<?php 
+<?php
 class monthEvents
 {
 	/*
 	 * This class provides a means of accessing the user's application details
 	 * for a given month
 	 */
-	
+
 	private $username;
 	private $month;
-	
+
 	function __construct($month, $username)
 	{
-		
+
 		if (strlen($month) == 1)
 		{
 			$this->month = "0".$month;
@@ -301,7 +301,7 @@ class monthEvents
 		}
 		$this->username = $username;
 	}
-	
+
 	/*
 	 * returns the events for the month
 	 * It accepts a string representing the month (1, 2, ....., 12).
@@ -317,54 +317,54 @@ class monthEvents
 	function getEvents()
 	{
 		require 'config.php';
-		
+
 		$results = array();	//associative array for storing results (keys are dates and
 		//values are lists of events on that date)
-		
+
 		// Create database connection
 		$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 		//echo "TESTING..connection status is " .$conn->connect_errno ."<br/>";
-		
+
 		// Check database connection
 		if ($conn->connect_error) {
 			return null;
 		}
-		
+
 		//create SQL query for applications released this month
 		$sql = "SELECT * FROM applications WHERE username = '$this->username' AND MONTH(released) = $this->month";
 		$released = $conn->query($sql);
-		
+
 		//create SQL query for applications closign this month
 		$sql = "SELECT * FROM applications WHERE username = '$this->username' AND MONTH(closes) = $this->month";
 		$closes = $conn->query($sql);
-		
+
 		//create SQL query for applications the user should be hearing from this month
 		$sql = "SELECT * FROM applications WHERE username = '$this->username' AND MONTH(hearFrom) = $this->month";
 		$hearFrom = $conn->query($sql);
-		
+
 		//create SQL query for applications commencing this month
 		$sql = "SELECT * FROM applications WHERE username = '$this->username' AND MONTH(commences) = $this->month";
 		$commences = $conn->query($sql);
-		
+
 		//check if database queries were successful
 		if (!$released || !$closes || !$hearFrom || !$commences) {
 			return null;
 		}
-		
+
 		//add each of the SQL query results to the output JSON
 		$results = $this->addResultsToOutput($released, 'released', $results);
 		$results = $this->addResultsToOutput($closes, 'closes', $results);
 		$results = $this->addResultsToOutput($hearFrom, 'hearFrom', $results);
 		$results = $this->addResultsToOutput($commences, 'commences', $results);
-		
+
 		//close database connection
 		$conn->close();
-		
+
 		//send the result
 		//return json_encode($results);
-		return $results;	
+		return $results;
 	}
-	 
+
 	/*
 	 * adds the SQL query results to the results object
 	 * $queryResult is a mysqli query result
@@ -396,5 +396,3 @@ class monthEvents
 	}
 }
 ?>
-
-

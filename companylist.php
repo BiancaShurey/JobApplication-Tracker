@@ -1,21 +1,18 @@
 	<?php
 
-			$servername = "localhost";
-			$username = "root";
-			$password = "mCeQPwYipSVI8xcx";
-			$dbname = "INFS3202";
+			require_once 'phpfunctions/header.php';
 
 			// Create connection
-			$conn = mysqli_connect($servername, $username, $password, $dbname);
+			$conn = mysqli_connect($servername, $dbusername, $dbpassword, $dbname);
 			// Check connection
 			if (!$conn) {
 				die("Connection failed: " . mysqli_connect_error());
 			}
-			
-			$sql = "SELECT * FROM company";
+
+			$sql = "SELECT * FROM companies";
 			$result = mysqli_query($conn, $sql); ?>
-			
-			
+
+
 <html lang="en">
 <head>
   <title>Company List</title>
@@ -25,12 +22,12 @@
 </head>
 
 <body>
-		
-			
+
+
 
 <div class="container">
   <h2>Basic Table</h2>
-  <p></p>            
+  <p></p>
   <table class="table">
     <thead>
       <tr>
@@ -47,24 +44,24 @@
 		<th>Username</th>
       </tr>
     </thead>
-	
-			
-            
-            
+
+
+
+
 	<tbody>
 <?php
 		while( $company = mysqli_fetch_array($result)){
-			
-		echo "<tr><td>".$company['Company']."</td><td>".$company['Type']."</td><td>".$company['Industry']."</td><td>".$company['Value']."</td><td>".$company['Diversity']."</td><td>".$company['Size']."</td><td>".$company['Finances']."</td><td>".$company['People']."</td><td>".$company['Website']."</td><td>".$company['Focus']."</td><td>".$company['username']."</td></tr>";
-			
+
+		echo "<tr><td>".$company['Company']."</td><td>".$company['Type']."</td><td>".$company['Industry']."</td><td>".$company['Values']."</td><td>".$company['Diversity']."</td><td>".$company['Size']."</td><td>".$company['Finances']."</td><td>".$company['People']."</td><td>".$company['Website']."</td><td>".$company['Focus']."</td><td>".$company['username']."</td></tr>";
+
 	}
 	?>
 	<?php
 	mysqli_close($conn); ?>
 	</tbody>
   </table>
-	
+
 </div>
 
 </body>
-</html>	
+</html>

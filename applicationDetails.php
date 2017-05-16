@@ -33,7 +33,7 @@ if ($conn->connect_error) {
 
 //create SQL query for application
 $id=$_GET['id'];
-$sql = "SELECT $id FROM applications";
+$sql = "SELECT * FROM applications WHERE id = '$id'";
 $result = $conn->query($sql);
 
 //check if database queries were successful
@@ -44,7 +44,7 @@ if (!$result) {
 	exit;
 }
 
-$classy = 'classification';
+$classy = 'hear from';
 while ($row = $result->fetch_assoc())
 {
 	$event = new Event($row, $classy);
@@ -69,7 +69,7 @@ $conn->close();
 <div class="main">
 	<div class="container">
 		<div class="Jumbotron">
-          <h1><?php echo $company.", ".$title; ?></h1>
+          <h1><?php echo $event->company().", ".$event->title(); ?></h1>
           <h2>Review/edit details for this application:</h2>
         </div>
 

@@ -52,8 +52,8 @@ $current = new currentUser();
             	echo
             	"<li><a>Hey, ".$current->username()."</a></li>
             	<li><a href=\"calendar.php\">Calendar</a></li>
-				<li><a href=\"userCompanies.php\">Companies</a></li>
-				<li><a href=\"userContacts.php\">Contacts</a></li>
+				<li><a href=\"companylist.php\">Companies</a></li>
+				<li><a href=\"contactlist.php\">Contacts</a></li>
 				<li class=\"dropdown\">
 					<a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">My Account
 					<span class=\"caret\"></span></a>
